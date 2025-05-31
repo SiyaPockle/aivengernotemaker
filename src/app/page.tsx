@@ -42,7 +42,7 @@ export default function Home() {
   //   setCopied(true)
   //   setTimeout(() => setCopied(false), 2000)
   // }
-  const fallbackCopyTextToClipboard = (text) => {
+  const fallbackCopyTextToClipboard = (text: string) => {
   const textArea = document.createElement("textarea");
   textArea.value = text;
   textArea.style.position = "fixed"; // avoid scrolling to bottom
