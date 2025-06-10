@@ -1,14 +1,16 @@
 'use client'
 
 import { useState } from 'react'
-import htmlDocx from 'html-docx-js/dist/html-docx'
+// htmlDocx import is no longer needed if handleExportDocx is removed
+// import htmlDocx from 'html-docx-js/dist/html-docx'
 
 export default function Home() {
   const [subject, setSubject] = useState('')
   const [queries, setQueries] = useState('')
   const [result, setResult] = useState('')
   const [loading, setLoading] = useState(false)
-  const [copied, setCopied] = useState(false)
+  // 'copied' state is no longer needed
+  // const [copied, setCopied] = useState(false)
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -37,71 +39,66 @@ export default function Home() {
     }
   }
 
+  // handleCopy and fallbackCopyTextToClipboard functions are removed
+  // const fallbackCopyTextToClipboard = (text: string) => {
+  //   const textArea = document.createElement("textarea");
+  //   textArea.value = text;
+  //   textArea.style.position = "fixed"; // avoid scrolling to bottom
+  //   document.body.appendChild(textArea);
+  //   textArea.focus();
+  //   textArea.select();
+
+  //   try {
+  //     const successful = document.execCommand('copy');
+  //     if (successful) {
+  //       setCopied(true);
+  //       setTimeout(() => setCopied(false), 2000);
+  //     } else {
+  //       console.error('Fallback: Copy command was unsuccessful');
+  //     }
+  //   } catch (err) {
+  //     console.error('Fallback: Oops, unable to copy', err);
+  //   }
+
+  //   document.body.removeChild(textArea);
+  // };
+
   // const handleCopy = () => {
-  //   navigator.clipboard.writeText(result)
-  //   setCopied(true)
-  //   setTimeout(() => setCopied(false), 2000)
+  //   if (navigator?.clipboard?.writeText) {
+  //     navigator.clipboard.writeText(result)
+  //       .then(() => {
+  //         setCopied(true);
+  //         setTimeout(() => setCopied(false), 2000);
+  //       })
+  //       .catch(() => fallbackCopyTextToClipboard(result));
+  //   } else {
+  //     fallbackCopyTextToClipboard(result);
+  //   }
+  // };
+
+  // handleExportDocx function is removed
+  // const handleExportDocx = () => {
+  //   const content = `
+  //     <html>
+  //       <head>
+  //         <meta charset="utf-8">
+  //         <style>
+  //           * {
+  //             color: black !important;
+  //             background-color: white !important;
+  //             font-family: Arial, sans-serif;
+  //           }
+  //         </style>
+  //       </head>
+  //       <body>${result}</body>
+  //     </html>
+  //   `
+  //   const converted = htmlDocx.asBlob(content)
+  //   const link = document.createElement('a')
+  //   link.href = URL.createObjectURL(converted)
+  //   link.download = `${subject || 'notes'}.docx`
+  //   link.click()
   // }
-  const fallbackCopyTextToClipboard = (text: string) => {
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  textArea.style.position = "fixed"; // avoid scrolling to bottom
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-
-  try {
-    const successful = document.execCommand('copy');
-    if (successful) {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } else {
-      console.error('Fallback: Copy command was unsuccessful');
-    }
-  } catch (err) {
-    console.error('Fallback: Oops, unable to copy', err);
-  }
-
-  document.body.removeChild(textArea);
-};
-
-const handleCopy = () => {
-  if (navigator?.clipboard?.writeText) {
-    navigator.clipboard.writeText(result)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      })
-      .catch(() => fallbackCopyTextToClipboard(result));
-  } else {
-    fallbackCopyTextToClipboard(result);
-  }
-};
-
-
-
-  const handleExportDocx = () => {
-    const content = `
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            * {
-              color: black !important;
-              background-color: white !important;
-              font-family: Arial, sans-serif;
-            }
-          </style>
-        </head>
-        <body>${result}</body>
-      </html>
-    `
-    const converted = htmlDocx.asBlob(content)
-    const link = document.createElement('a')
-    link.href = URL.createObjectURL(converted)
-    link.download = `${subject || 'notes'}.docx`
-    link.click()
-  }
 
   return (
     <main style={{
@@ -218,7 +215,9 @@ const handleCopy = () => {
 
           {result && (
             <>
-              {/* <div style={{
+              {/* The div containing copy and export buttons is now removed */}
+              {/*
+              <div style={{
                 display: 'flex',
                 gap: '10px',
                 marginBottom: '10px',
@@ -251,7 +250,8 @@ const handleCopy = () => {
                 >
                   📄 Export as DOCX
                 </button>
-              </div> */}
+              </div>
+              */}
 
               <div
                 style={{
