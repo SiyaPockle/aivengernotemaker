@@ -151,8 +151,12 @@ const handleCopy = () => {
             }}
           >
             <option value="">Select a subject</option>
-            <option value="Database_Management_System">Database Management System</option>
+            <option value="Artificial_Intelligence_And_Fuzzy_Logic">Artificial Intelligence and Fuzzy Logic</option>
+            <option value="Computer_Forensic_Cyber_Security">Computer Forensics and Cyber Security</option>
             <option value="Cryptography_and_Network_Security">Cryptography and Network Security</option>
+            <option value="Database_Management_System">Database Management System</option>
+             <option value="Design_And_Analysis_Of_Algorithms">Design and Analysis of Algorithms</option>
+            <option value="Management_And_Organizational_Behaviour">Management And Organizational Behaviour</option>
             <option value="Mobile_Computing">Mobile Computing</option>
           </select>
 
@@ -212,7 +216,7 @@ const handleCopy = () => {
             </p>
           )}
 
-          {result && (
+          {/* {result && (
             <>
               <div style={{
                 display: 'flex',
@@ -263,7 +267,7 @@ const handleCopy = () => {
                 dangerouslySetInnerHTML={{ __html: result }}
               />
             </>
-          )}
+          )} */}
         </div>
       </div>
     </main>
