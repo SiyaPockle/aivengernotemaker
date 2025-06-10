@@ -155,7 +155,7 @@ const handleCopy = () => {
             <option value="Computer_Forensic_Cyber_Security">Computer Forensics and Cyber Security</option>
             <option value="Cryptography_and_Network_Security">Cryptography and Network Security</option>
             <option value="Database_Management_System">Database Management System</option>
-             <option value="Design_And_Analysis_Of_Algorithms">Design and Analysis of Algorithms</option>
+            <option value="Design_And_Analysis_Of_Algorithms">Design and Analysis of Algorithms</option>
             <option value="Management_And_Organizational_Behaviour">Management And Organizational Behaviour</option>
             <option value="Mobile_Computing">Mobile Computing</option>
           </select>
@@ -216,9 +216,9 @@ const handleCopy = () => {
             </p>
           )}
 
-          {/* {result && (
+          {result && (
             <>
-              <div style={{
+              {/* <div style={{
                 display: 'flex',
                 gap: '10px',
                 marginBottom: '10px',
@@ -251,7 +251,7 @@ const handleCopy = () => {
                 >
                   📄 Export as DOCX
                 </button>
-              </div>
+              </div> */}
 
               <div
                 style={{
@@ -267,7 +267,7 @@ const handleCopy = () => {
                 dangerouslySetInnerHTML={{ __html: result }}
               />
             </>
-          )} */}
+          )}
         </div>
       </div>
     </main>
