@@ -42,66 +42,66 @@ export default function Home() {
   //   setCopied(true)
   //   setTimeout(() => setCopied(false), 2000)
   // }
-  const fallbackCopyTextToClipboard = (text) => {
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  textArea.style.position = "fixed"; // avoid scrolling to bottom
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
+//   const fallbackCopyTextToClipboard = (text) => {
+//   const textArea = document.createElement("textarea");
+//   textArea.value = text;
+//   textArea.style.position = "fixed"; // avoid scrolling to bottom
+//   document.body.appendChild(textArea);
+//   textArea.focus();
+//   textArea.select();
 
-  try {
-    const successful = document.execCommand('copy');
-    if (successful) {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } else {
-      console.error('Fallback: Copy command was unsuccessful');
-    }
-  } catch (err) {
-    console.error('Fallback: Oops, unable to copy', err);
-  }
+//   try {
+//     const successful = document.execCommand('copy');
+//     if (successful) {
+//       setCopied(true);
+//       setTimeout(() => setCopied(false), 2000);
+//     } else {
+//       console.error('Fallback: Copy command was unsuccessful');
+//     }
+//   } catch (err) {
+//     console.error('Fallback: Oops, unable to copy', err);
+//   }
 
-  document.body.removeChild(textArea);
-};
+//   document.body.removeChild(textArea);
+// };
 
-const handleCopy = () => {
-  if (navigator?.clipboard?.writeText) {
-    navigator.clipboard.writeText(result)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      })
-      .catch(() => fallbackCopyTextToClipboard(result));
-  } else {
-    fallbackCopyTextToClipboard(result);
-  }
-};
+// const handleCopy = () => {
+//   if (navigator?.clipboard?.writeText) {
+//     navigator.clipboard.writeText(result)
+//       .then(() => {
+//         setCopied(true);
+//         setTimeout(() => setCopied(false), 2000);
+//       })
+//       .catch(() => fallbackCopyTextToClipboard(result));
+//   } else {
+//     fallbackCopyTextToClipboard(result);
+//   }
+// };
 
 
 
-  const handleExportDocx = () => {
-    const content = `
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            * {
-              color: black !important;
-              background-color: white !important;
-              font-family: Arial, sans-serif;
-            }
-          </style>
-        </head>
-        <body>${result}</body>
-      </html>
-    `
-    const converted = htmlDocx.asBlob(content)
-    const link = document.createElement('a')
-    link.href = URL.createObjectURL(converted)
-    link.download = `${subject || 'notes'}.docx`
-    link.click()
-  }
+//   const handleExportDocx = () => {
+//     const content = `
+//       <html>
+//         <head>
+//           <meta charset="utf-8">
+//           <style>
+//             * {
+//               color: black !important;
+//               background-color: white !important;
+//               font-family: Arial, sans-serif;
+//             }
+//           </style>
+//         </head>
+//         <body>${result}</body>
+//       </html>
+//     `
+//     const converted = htmlDocx.asBlob(content)
+//     const link = document.createElement('a')
+//     link.href = URL.createObjectURL(converted)
+//     link.download = `${subject || 'notes'}.docx`
+//     link.click()
+//   }
 
   return (
     <main style={{
@@ -214,40 +214,6 @@ const handleCopy = () => {
 
           {result && (
             <>
-              <div style={{
-                display: 'flex',
-                gap: '10px',
-                marginBottom: '10px',
-                marginTop: '10px'
-              }}>
-                <button
-                  onClick={handleCopy}
-                  style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#334155',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  {copied ? '✅ Copied!' : '📋 Copy to Clipboard'}
-                </button>
-
-                <button
-                  onClick={handleExportDocx}
-                  style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#10b981',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  📄 Export as DOCX
-                </button>
-              </div>
 
               <div
                 style={{
