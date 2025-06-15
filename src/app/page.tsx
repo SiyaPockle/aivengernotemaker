@@ -1,14 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import htmlDocx from 'html-docx-js/dist/html-docx'
+/*import htmlDocx from 'html-docx-js/dist/html-docx'*/
 
 export default function Home() {
   const [subject, setSubject] = useState('')
   const [queries, setQueries] = useState('')
   const [result, setResult] = useState('')
   const [loading, setLoading] = useState(false)
-  const [copied, setCopied] = useState(false)
+  /*const [copied, setCopied] = useState(false)*/
 
   const handleSubmit = async () => {
     setLoading(true)
