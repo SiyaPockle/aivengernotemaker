@@ -1,16 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-// htmlDocx import is no longer needed if handleExportDocx is removed
-// import htmlDocx from 'html-docx-js/dist/html-docx'
+import htmlDocx from 'html-docx-js/dist/html-docx'
 
 export default function Home() {
   const [subject, setSubject] = useState('')
   const [queries, setQueries] = useState('')
   const [result, setResult] = useState('')
   const [loading, setLoading] = useState(false)
-  // 'copied' state is no longer needed
-  // const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -38,6 +36,7 @@ export default function Home() {
       setLoading(false)
     }
   }
+
 /*
   // handleCopy and fallbackCopyTextToClipboard functions are removed
   // const fallbackCopyTextToClipboard = (text: string) => {
@@ -101,6 +100,7 @@ export default function Home() {
   //   link.click()
   // }
 */
+
   return (
     <main style={{
       backgroundColor: '#0f172a',
@@ -149,12 +149,8 @@ export default function Home() {
             }}
           >
             <option value="">Select a subject</option>
-            <option value="Artificial_Intelligence_And_Fuzzy_Logic">Artificial Intelligence and Fuzzy Logic</option>
-            <option value="Computer_Forensic_Cyber_Security">Computer Forensics and Cyber Security</option>
-            <option value="Cryptography_and_Network_Security">Cryptography and Network Security</option>
             <option value="Database_Management_System">Database Management System</option>
-            <option value="Design_And_Analysis_Of_Algorithms">Design and Analysis of Algorithms</option>
-            <option value="Management_And_Organizational_Behaviour">Management And Organizational Behaviour</option>
+            <option value="Cryptography_and_Network_Security">Cryptography and Network Security</option>
             <option value="Mobile_Computing">Mobile Computing</option>
             <option value="Technical_English_And_Report_Writing">Technical English and Report Writing</option>
           </select>
@@ -217,43 +213,6 @@ export default function Home() {
 
           {result && (
             <>
-              {/* The div containing copy and export buttons is now removed */}
-              {/*
-              <div style={{
-                display: 'flex',
-                gap: '10px',
-                marginBottom: '10px',
-                marginTop: '10px'
-              }}>
-                <button
-                  onClick={handleCopy}
-                  style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#334155',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  {copied ? '✅ Copied!' : '📋 Copy to Clipboard'}
-                </button>
-
-                <button
-                  onClick={handleExportDocx}
-                  style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#10b981',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  📄 Export as DOCX
-                </button>
-              </div>
-              */}
 
               <div
                 style={{
