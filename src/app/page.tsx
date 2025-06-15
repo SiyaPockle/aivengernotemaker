@@ -87,8 +87,12 @@ export default function Home() {
             }}
           >
             <option value="">Select a subject</option>
-            <option value="Database_Management_System">Database Management System</option>
+            <option value="Artificial_Intelligence_And_Fuzzy_Logic">Artificial Intelligence and Fuzzy Logic</option>
+            <option value="Computer_Forensic_Cyber_Security">Computer Forensics and Cyber Security</option>
             <option value="Cryptography_and_Network_Security">Cryptography and Network Security</option>
+            <option value="Database_Management_System">Database Management System</option>
+            <option value="Design_And_Analysis_Of_Algorithms">Design and Analysis of Algorithms</option>
+            <option value="Management_And_Organizational_Behaviour">Management and Organizational Behaviour</option>
             <option value="Mobile_Computing">Mobile Computing</option>
             <option value="Technical_English_And_Report_Writing">Technical English and Report Writing</option>
           </select>
