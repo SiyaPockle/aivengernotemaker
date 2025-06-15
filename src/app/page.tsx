@@ -38,7 +38,7 @@ export default function Home() {
       setLoading(false)
     }
   }
-
+/*
   // handleCopy and fallbackCopyTextToClipboard functions are removed
   // const fallbackCopyTextToClipboard = (text: string) => {
   //   const textArea = document.createElement("textarea");
@@ -75,7 +75,8 @@ export default function Home() {
   //     fallbackCopyTextToClipboard(result);
   //   }
   // };
-
+*/
+/*
   // handleExportDocx function is removed
   // const handleExportDocx = () => {
   //   const content = `
@@ -99,7 +100,7 @@ export default function Home() {
   //   link.download = `${subject || 'notes'}.docx`
   //   link.click()
   // }
-
+*/
   return (
     <main style={{
       backgroundColor: '#0f172a',
@@ -155,6 +156,7 @@ export default function Home() {
             <option value="Design_And_Analysis_Of_Algorithms">Design and Analysis of Algorithms</option>
             <option value="Management_And_Organizational_Behaviour">Management And Organizational Behaviour</option>
             <option value="Mobile_Computing">Mobile Computing</option>
+            <option value="Technical_English_And_Report_Writing">Technical English and Report Writing</option>
           </select>
 
           <label style={{ fontWeight: 'bold' }}>Queries/Questions</label>
