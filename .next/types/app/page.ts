@@ -1,4 +1,4 @@
-// File: D:\PROJECTS\FINAL YEAR\NOTE_MAKING\ai-notes-frontend\src\app\page.tsx
+// File: D:\PROJECTS\FINAL YEAR\NOTE_MAKING\AI-FE\aivengernotemaker\src\app\page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
