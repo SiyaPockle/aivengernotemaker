@@ -1,14 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-
+import htmlDocx from 'html-docx-js/dist/html-docx'
 
 export default function Home() {
   const [subject, setSubject] = useState('')
   const [queries, setQueries] = useState('')
   const [result, setResult] = useState('')
+  const [markdown, setMarkdown] = useState('')
   const [loading, setLoading] = useState(false)
- 
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -18,7 +18,25 @@ export default function Home() {
       .map(q => q.trim())
       .filter(q => q.length > 0)
 
-    try {
+    // try {
+    //   const response = await fetch(`http://127.0.0.1:8000/generate-notes`, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ subject, raw_queries: rawQueriesArray }),
+    //   })
+
+    //   if (!response.ok) throw new Error('Failed to generate notes.')
+
+    //   const data = await response.json()
+    //   setResult(data.notes_html)
+    //   setMarkdown(data.notes_md)
+    // } catch (err) {
+    //   console.error(err)
+    //   setResult('Error generating notes. Please try again.')
+    // } finally {
+    //   setLoading(false)
+    // }
+      try {
       const response = await fetch(`https://siaaz-notemaking.hf.space/generate-notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -29,15 +47,49 @@ export default function Home() {
 
       const data = await response.json()
       setResult(data.notes_html)
+      setMarkdown(data.notes_md)
     } catch (err) {
       console.error(err)
       setResult('Error generating notes. Please try again.')
     } finally {
       setLoading(false)
     }
+
   }
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(markdown)
+  }
 
+  const handleDownloadHtml = () => {
+    const blob = new Blob([result], { type: 'text/html' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${subject || 'notes'}.html`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
+  const handleDownloadDocx = () => {
+    const content = `
+      <html>
+        <head><meta charset="utf-8"></head>
+        <body>${result}</body>
+      </html>
+    `
+    const blob = htmlDocx.asBlob(content)
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${subject || 'notes'}.docx`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
 
   return (
     <main style={{
@@ -57,7 +109,6 @@ export default function Home() {
         alignItems: 'flex-start',
         justifyContent: 'center'
       }}>
-        {/* Left Column - Input */}
         <div style={{
           backgroundColor: '#1e293b',
           padding: '24px',
@@ -132,7 +183,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Right Column - Output */}
         <div style={{
           backgroundColor: '#1e293b',
           padding: '24px',
@@ -155,6 +205,56 @@ export default function Home() {
 
           {result && (
             <>
+              <button
+                onClick={handleCopy}
+                style={{
+                  marginBottom: '12px',
+                  padding: '10px 16px',
+                  backgroundColor: '#22c55e',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  alignSelf: 'flex-start'
+                }}
+              >
+                📋 Copy Markdown
+              </button>
+
+              <button
+                onClick={handleDownloadHtml}
+                style={{
+                  marginBottom: '12px',
+                  padding: '10px 16px',
+                  backgroundColor: '#6366f1',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  alignSelf: 'flex-start'
+                }}
+              >
+                💾 Download HTML
+              </button>
+
+              <button
+                onClick={handleDownloadDocx}
+                style={{
+                  marginBottom: '16px',
+                  padding: '10px 16px',
+                  backgroundColor: '#f59e0b',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  alignSelf: 'flex-start'
+                }}
+              >
+                📄 Export as DOCX
+              </button>
 
               <div
                 style={{
