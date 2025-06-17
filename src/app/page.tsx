@@ -57,9 +57,9 @@ export default function Home() {
 
   }
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(markdown)
-  }
+  // const handleCopy = () => {
+  //   navigator.clipboard.writeText(markdown)
+  // }
 
   const handleDownloadHtml = () => {
     const blob = new Blob([result], { type: 'text/html' })
