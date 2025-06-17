@@ -9,6 +9,7 @@ export default function Home() {
   const [result, setResult] = useState('')
   const [markdown, setMarkdown] = useState('')
   const [loading, setLoading] = useState(false)
+  const [copied, setCopied] = useState(false)  // 👈 state to track copy status
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -18,25 +19,30 @@ export default function Home() {
       .map(q => q.trim())
       .filter(q => q.length > 0)
 
-    // try {
-    //   const response = await fetch(`http://127.0.0.1:8000/generate-notes`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ subject, raw_queries: rawQueriesArray }),
-    //   })
+    // 👉 Optionally use this block for local backend
+    /*
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/generate-notes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject, raw_queries: rawQueriesArray }),
+      })
 
-    //   if (!response.ok) throw new Error('Failed to generate notes.')
+      if (!response.ok) throw new Error('Failed to generate notes.')
 
-    //   const data = await response.json()
-    //   setResult(data.notes_html)
-    //   setMarkdown(data.notes_md)
-    // } catch (err) {
-    //   console.error(err)
-    //   setResult('Error generating notes. Please try again.')
-    // } finally {
-    //   setLoading(false)
-    // }
-      try {
+      const data = await response.json()
+      setResult(data.notes_html)
+      setMarkdown(data.notes_md)
+    } catch (err) {
+      console.error(err)
+      setResult('Error generating notes. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+    */
+
+    // 👉 Production/Deployed API
+    try {
       const response = await fetch(`https://siaaz-notemaking.hf.space/generate-notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -54,11 +60,12 @@ export default function Home() {
     } finally {
       setLoading(false)
     }
-
   }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(markdown)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)  // Reset the label after 2 seconds
   }
 
   const handleDownloadHtml = () => {
@@ -219,7 +226,7 @@ export default function Home() {
                   alignSelf: 'flex-start'
                 }}
               >
-                📋 Copy Markdown
+                {copied ? '✅ Copied!' : '📋 Copy Markdown'}
               </button>
 
               <button
